@@ -5,36 +5,71 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
-    <script src="script.js" async defer></script>
+    <!-- <script src="script.js" async defer></script> -->
+    <script src="Jquery/jquery-3.6.4.js"></script>
     <title>Document</title>
 </head>
 <body>
-    <h1 class="countdown-title">Countdown Clock</h1>
-    <div id="deadline-message" class="deadline-message">
-      Time is up!
-    </div>
-    <div id="countdown" class="countdown">
-      <div class="countdown-number">
-        <span class="days countdown-time"></span>
-        <span>:</span>
-        <span class="countdown-text">Дни</span>
-      </div>
-      <div class="countdown-number">
-        <span class="hours countdown-time"></span>
-        <span>:</span>
-
-        <span class="countdown-text">Часы</span>
-      </div>
-      <div class="countdown-number">
-        <span class="minutes countdown-time"></span>
-        <span>:</span>
-
-        <span class="countdown-text">Минуты</span>
-      </div>
-      <div class="countdown-number">
-        <span class="seconds countdown-time"></span>
-        <span class="countdown-text">Секунды</span>
-      </div>
-    </div>
+    <div id='timer'></div>
+    
+    <script>
+     window.onload = function() { // дожидаемся загрузки страницы
+    initializeTimer(); // вызываем функцию инициализации таймера
+  }
+  
+  function initializeTimer() {
+    seconds = localStorage.getItem('sec') || 6400;
+    if (seconds > 0) { // проверка - истекла ли дата обратного отсчета
+      var minutes = seconds / 60; // определяем количество минут до истечения таймера
+      var hours = minutes / 60; // определяем количество часов до истечения таймера
+      minutes = localStorage.getItem('min') || (hours - Math.floor(hours)) * 60; // подсчитываем кол-во оставшихся минут в текущем часе
+      hours = localStorage.getItem('hours') || Math.floor(hours); // целое количество часов до истечения таймера
+      seconds = localStorage.getItem('sec') || Math.floor((minutes - Math.floor(minutes)) *
+        60); // подсчитываем кол-во оставшихся секунд в текущей минуте
+      minutes = Math.floor(minutes); // округляем до целого кол-во оставшихся минут в текущем часе
+  
+  
+      setTimePage(hours, minutes, seconds); // выставляем начальные значения таймера
+  
+      function secOut() {
+        localStorage.setItem("sec", seconds);
+        localStorage.setItem("min", minutes);
+        localStorage.setItem("hours", hours);
+        if (seconds == 0) { // если секунду закончились то
+          if (minutes == 0) { // если минуты закончились то
+            if (hours == 0) { // если часы закончились то
+              showMessage(timerId); // выводим сообщение об окончании отсчета
+            } else {
+              hours--; // уменьшаем кол-во часов
+              minutes = 59; // обновляем минуты 
+              seconds = 59; // обновляем секунды
+            }
+          } else {
+            minutes--; // уменьшаем кол-во минут
+            seconds = 59; // обновляем секунды
+          }
+        } else {
+          seconds--; // уменьшаем кол-во секунд
+        }
+  
+        setTimePage(hours, minutes, seconds); // обновляем значения таймера на странице
+  
+      }
+      timerId = setInterval(secOut, 1000) // устанавливаем вызов функции через каждую секунду
+    } else {
+      alert("Установленная дата уже прошла");
+    }
+  }
+  
+  function setTimePage(h, m, s) { // функция выставления таймера на странице
+    var element = document.getElementById("timer"); // находим элемент с id = timer
+    element.innerHTML = "Часы: " + 5 + " Минуты: " + m + " Секунды:" + s; // выставляем новые значения таймеру на странице
+  }
+  
+  function showMessage(timerId) { // функция, вызываемая по истечению времени
+    alert("Время истекло!");
+    clearInterval(timerId); // останавливаем вызов функции через каждую секунду
+  }
+    </script>
 </body>
 </html>
