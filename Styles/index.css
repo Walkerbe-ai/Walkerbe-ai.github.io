@@ -1,0 +1,83 @@
+body {
+    margin: 0;
+    background: url('/Resources/Image/Background.jpg') no-repeat center center fixed;
+    background-size: cover;
+}
+
+@font-face { 
+    font-family: "Castellar"; 
+    src: url("/Resources/Font/Castellar.ttf") format("truetype"); 
+    font-style: normal; 
+}
+
+.name, .btn_create_order, .btns {
+    display: flex;
+    justify-content: center;
+}
+
+.name {
+    font-size: 4vmax;
+    font-family: 'Castellar';
+    background-color: white;
+    margin-top: 3vmax;
+}
+
+.hands {
+    display: flex;
+    justify-content: center;
+    margin-top: 3vmax;
+}
+
+.hands > img {
+    width: 10vmax;
+    height: 8vmax;
+}
+
+.button-accent, .btns > button {
+    font-family: 'Castellar';
+    text-align: center;
+    vertical-align: middle;
+    cursor: pointer;
+    transition: opacity 0.3s ease;
+    border-radius: 0.5vmax;
+    font-size: 2vmax;
+}
+
+.button-accent {
+    color: white;
+    background: linear-gradient(to bottom right, red, purple);
+    border: 0.1vmax solid transparent;
+    width: 28vmax;
+    height: 5vmax;
+    margin-top: 3vmax;
+}
+
+.button-accent:hover {
+    opacity: 0.8;
+}
+
+.btns > button {
+    background: transparent;
+    border: 0.19vmax solid #FF707070;
+    color: black;
+    padding: 1vmax;
+    margin: 0.3vmax;
+    margin-top: 1vmax;
+    font-size: 2.07vmax;
+}
+
+.btns > button:hover {
+    background: white;
+}
+
+@media screen and (max-width: 768px) {
+    /* Стили для устройств с шириной экрана до 768px */
+}
+
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+    /* Стили для устройств с шириной экрана от 769px до 1024px */
+}
+
+@media screen and (min-width: 1025px) {
+    /* Стили для устройств с шириной экрана от 1025px */
+}
