@@ -10,6 +10,8 @@ body {
     font-style: normal; 
 }
 
+
+
 .name, .btn_create_order, .btns {
     display: flex;
     justify-content: center;
@@ -71,13 +73,10 @@ body {
 }
 
 @media screen and (max-width: 768px) {
-    /* Стили для устройств с шириной экрана до 768px */
-}
-
-@media screen and (min-width: 769px) and (max-width: 1024px) {
-    /* Стили для устройств с шириной экрана от 769px до 1024px */
-}
-
-@media screen and (min-width: 1025px) {
-    /* Стили для устройств с шириной экрана от 1025px */
+    .center{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        height: 100vh;
+    }
 }
